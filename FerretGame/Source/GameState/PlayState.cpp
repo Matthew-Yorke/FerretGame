@@ -34,6 +34,9 @@ namespace FerretGame
    {
       // TODO: Remove when moved to appropriate class.
       mpEngine->GetScene()->GetLayer(0)->AddAnimatedSprite(mCharacter.GetSprite());
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mCharacter.GetBackHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mCharacter.GetMiddleHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mCharacter.GetFrontHitbox(), nullptr, 10.0F));
    }
    
    //******************************************************************************************************************

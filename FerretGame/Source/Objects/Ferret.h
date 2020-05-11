@@ -12,6 +12,7 @@
 
 #include "BebopCore/Graphics/AnimatedSprite.h"
 #include "BebopCore/Math/Vector2D.h"
+#include "BebopCore/Objects/CircleObject.h"
 
 namespace FerretGame
 {
@@ -119,6 +120,10 @@ namespace FerretGame
          //************************************************************************************************************
          float GetAngleRadians();
 
+         Bebop::Objects::CircleObject* GetBackHitbox();
+         Bebop::Objects::CircleObject* GetMiddleHitbox();
+         Bebop::Objects::CircleObject* GetFrontHitbox();
+
       protected:
 
          // There are currently no protected methods for this class.
@@ -153,6 +158,10 @@ namespace FerretGame
 
          // The animated sprite for the ferret to be drawn.
          Bebop::Graphics::AnimatedSprite* mSprite;
+
+         Bebop::Objects::CircleObject* mBackHitBox;
+         Bebop::Objects::CircleObject* mMiddleHitBox;
+         Bebop::Objects::CircleObject* mFrontHitBox;
 
       //***************************************************************************************************************
       // Member Variables - End
