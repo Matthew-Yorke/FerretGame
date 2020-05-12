@@ -40,11 +40,11 @@ namespace FerretGame
                                                     Bebop::Math::Vector2D<int>(IDLE_FRAME_ROW, FIRST_ANIMATION_FRAME),
                                                     SPRITE_SIZE, SPRITE_SIZE, mLocation, ANIMATION_FPS, IDLE_FRAME_COUNT, mRotation);
       mBackHitBox = new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF + HITBOX_OFFSET),
-                                                     HITBOX_RADIUS, Bebop::Graphics::Color(0,0,255,160), true);
+                                                     HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160));
       mMiddleHitBox = new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF),
-                                                       HITBOX_RADIUS, Bebop::Graphics::Color(0,0,255,160), true);
+                                                       HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160));
       mFrontHitBox = new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF - HITBOX_OFFSET),
-                                                      HITBOX_RADIUS, Bebop::Graphics::Color(0,0,255,160), true);
+                                                      HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160));
    }
    
    //******************************************************************************************************************
