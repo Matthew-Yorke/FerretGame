@@ -3,7 +3,8 @@
 // File: Ferret.h
 //
 // Description:
-//    TODO: Add description.
+//    This class handles the creation and changes of a ferret object within the game. A ferret is able to turn and move
+//    throughout a game scene.
 //
 //*********************************************************************************************************************
 
@@ -29,23 +30,23 @@ namespace FerretGame
          // Method: Ferret
          //
          // Description:
-         //    TODO: Add description.
+         //    Constructor the sets member variables to default values.
          //
          // Arguments:
-         //    N/A
+         //    aLocation - the X/Y-Coordinate of thwere the object is created on the scene.
          //
          // Return:
          //    N/A
          //
          //************************************************************************************************************
-         Ferret();
+         Ferret(const Bebop::Math::Vector2D<float> aLocation);
 
          //************************************************************************************************************
          //
          // Method: ~Ferret
          //
          // Description:
-         //    TODO: Add description.
+         //    Destructor that cleans up any allocated memory before the object is destroyed.
          //
          // Arguments:
          //    N/A
@@ -77,10 +78,10 @@ namespace FerretGame
          // Method: Move
          //
          // Description:
-         //    TODO: Add description.
+         //    Updates the forward movement of the ferret by the passed in x/y change.
          //
          // Arguments:
-         //    aMovement - TODO: Add description.
+         //    aMovement - The X/Y-Coordinate position change.
          //
          // Return:
          //    N/A
@@ -93,10 +94,10 @@ namespace FerretGame
          // Method: Rotate
          //
          // Description:
-         //    TODO: Add description.
+         //    Rotate the ferret angle using the passed in rotational change.
          //
          // Arguments:
-         //    aRotationChange - TODO: Add description.
+         //    aRotationChange - The rotational change.
          //
          // Return:
          //    N/A
@@ -109,19 +110,63 @@ namespace FerretGame
          // Method: GetAngleRadians
          //
          // Description:
-         //    TODO: Add description.
+         //    Returns the angle in radians of the current rotation of the ferret.
          //
          // Arguments:
          //    N/A
          //
          // Return:
-         //    TODO: Add description.
+         //    Returns the current rotation in radians.
          //
          //************************************************************************************************************
          float GetAngleRadians();
 
+         //************************************************************************************************************
+         //
+         // Method: GetBackHitbox
+         //
+         // Description:
+         //    Retrieveal the back hitbox of the ferret.
+         //
+         // Arguments:
+         //    N/A
+         //
+         // Return:
+         //    Returns a pointer to reference the back hitbox of the ferret.
+         //
+         //************************************************************************************************************
          Bebop::Objects::CircleObject* GetBackHitbox();
+
+         //************************************************************************************************************
+         //
+         // Method: GetMiddleHitbox
+         //
+         // Description:
+         //    Retrieveal the middle hitbox of the ferret.
+         //
+         // Arguments:
+         //    N/A
+         //
+         // Return:
+         //    Returns a pointer to reference the middle hitbox of the ferret.
+         //
+         //************************************************************************************************************
          Bebop::Objects::CircleObject* GetMiddleHitbox();
+
+         //************************************************************************************************************
+         //
+         // Method: GetFrontHitbox
+         //
+         // Description:
+         //    Retrieveal the frontal hitbox of the ferret.
+         //
+         // Arguments:
+         //    N/A
+         //
+         // Return:
+         //    Returns a pointer to reference the frontal hitbox of the ferret.
+         //
+         //************************************************************************************************************
          Bebop::Objects::CircleObject* GetFrontHitbox();
 
       protected:

@@ -50,5 +50,8 @@
     <ClInclude Include="Source\GameState\PlayState.h">
       <Filter>Source Files\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Objects\FerretConstants.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

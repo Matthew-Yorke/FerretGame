@@ -30,7 +30,7 @@ namespace FerretGame
    //
    //******************************************************************************************************************
    PlayState::PlayState(Bebop::Bebop* apEngine) :
-      mpEngine(apEngine), mCharacter(), mSprint(1.0F)
+      mpEngine(apEngine), mCharacter(Bebop::Math::Vector2D<float>(0.0F, 0.0F)), mSprint(1.0F)
    {
       // TODO: Remove when moved to appropriate class.
       mpEngine->GetScene()->GetLayer(0)->AddAnimatedSprite(mCharacter.GetSprite());
