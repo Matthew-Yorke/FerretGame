@@ -12,6 +12,7 @@
 #define Game_H
 
 #include "Bebop.h"
+#include "GameScene.h"
 #include "GameState/GameState.h"
 
 namespace FerretGame

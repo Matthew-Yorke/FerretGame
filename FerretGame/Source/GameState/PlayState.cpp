@@ -30,13 +30,14 @@ namespace FerretGame
    //
    //******************************************************************************************************************
    PlayState::PlayState(Bebop::Bebop* apEngine) :
-      mpEngine(apEngine), mCharacter(Bebop::Math::Vector2D<float>(0.0F, 0.0F)), mSprint(1.0F)
+      mpEngine(apEngine), mSprint(1.0F), mpCurrentScene(nullptr)
    {
+      mpCharacter = new Ferret(Bebop::Math::Vector2D<float>(0.0F, 0.0F));
       // TODO: Remove when moved to appropriate class.
-      mpEngine->GetScene()->GetLayer(0)->AddAnimatedSprite(mCharacter.GetSprite());
-      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mCharacter.GetBackHitbox(), nullptr, 10.0F));
-      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mCharacter.GetMiddleHitbox(), nullptr, 10.0F));
-      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mCharacter.GetFrontHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddAnimatedSprite(mpCharacter->GetSprite());
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetBackHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetMiddleHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetFrontHitbox(), nullptr, 10.0F));
    }
    
    //******************************************************************************************************************
@@ -55,6 +56,7 @@ namespace FerretGame
    //******************************************************************************************************************
    PlayState::~PlayState()
    {
+      delete mpCharacter;
    }
 
    //******************************************************************************************************************
@@ -88,19 +90,19 @@ namespace FerretGame
 
          if (mpEngine->GetKeyStatus(ALLEGRO_KEY_W) == true)
          {
-            mCharacter.Move(Bebop::Math::Vector2D<float>(sin(mCharacter.GetAngleRadians()) * mSprint, -cos(mCharacter.GetAngleRadians()) * mSprint));
+            mpCharacter->Move(Bebop::Math::Vector2D<float>(sin(mpCharacter->GetAngleRadians()) * mSprint, -cos(mpCharacter->GetAngleRadians()) * mSprint));
          }
          if (mpEngine->GetKeyStatus(ALLEGRO_KEY_S) == true)
          {
-            mCharacter.Move(Bebop::Math::Vector2D<float>(-sin(mCharacter.GetAngleRadians()) * mSprint, cos(mCharacter.GetAngleRadians()) * mSprint));
+            mpCharacter->Move(Bebop::Math::Vector2D<float>(-sin(mpCharacter->GetAngleRadians()) * mSprint, cos(mpCharacter->GetAngleRadians()) * mSprint));
          }
          if (mpEngine->GetKeyStatus(ALLEGRO_KEY_A) == true)
          {
-            mCharacter.Rotate(-1.0F);
+            mpCharacter->Rotate(-1.0F);
          }
          if (mpEngine->GetKeyStatus(ALLEGRO_KEY_D) == true)
          {
-            mCharacter.Rotate(1.0F);
+            mpCharacter->Rotate(1.0F);
          }
       }
    }
@@ -123,7 +125,13 @@ namespace FerretGame
 // Private Methods - Start
 //*********************************************************************************************************************
 
-   // There are currently no private methods for this class.
+   // TODO: Remove later, this is only for testing purposes.
+   void PlayState::SetupTestGame()
+   {
+      mpCurrentScene = new GameScene();
+      mpCurrentScene->AddFloor(0, new Bebop::Objects::RectangleObject(Bebop::Math::Vector2D<float>(0.0F,0.0F), 0, 0, nullptr));
+      mpCurrentScene->AddFerret(mpCharacter);
+   }
 
 //*********************************************************************************************************************
 // Private Methods - End

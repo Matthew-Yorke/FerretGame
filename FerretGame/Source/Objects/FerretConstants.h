@@ -40,6 +40,9 @@ namespace FerretGame
 
    // The number of frames in the idle animation.
    const int IDLE_FRAME_COUNT = 1;
+
+   // The set of vertical movement of the ferret.
+   enum VerticalMovement {RISING, DESCENDING, NONE};
 }
 
 #endif // FerretConstants_H

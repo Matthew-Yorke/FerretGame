@@ -9,7 +9,6 @@
 //*********************************************************************************************************************
 
 #include "Ferret.h"
-#include "FerretConstants.h"
 #include "BebopCore/Math/MathConstants.h"
 #include "BebopCore/Graphics/Color.h"
 
@@ -34,7 +33,7 @@ namespace FerretGame
    //
    //******************************************************************************************************************
    Ferret::Ferret(const Bebop::Math::Vector2D<float> aLocation) :
-      mLocation(aLocation), mRotation(Bebop::Math::DEGREES_ZERO)
+      mLocation(aLocation), mRotation(Bebop::Math::DEGREES_ZERO), mHeight(0), mVerticalMovement(VerticalMovement::NONE)
    {
       mSprite = new Bebop::Graphics::AnimatedSprite("../Images/TestFerret.png",
                                                     Bebop::Math::Vector2D<int>(IDLE_FRAME_ROW, FIRST_ANIMATION_FRAME),
@@ -112,6 +111,82 @@ namespace FerretGame
       mMiddleHitBox->SetCoordinateY(mMiddleHitBox->GetCoordinateY() + aMovement.GetComponentY());
       mFrontHitBox->SetCoordinateX(mFrontHitBox->GetCoordinateX() + aMovement.GetComponentX());
       mFrontHitBox->SetCoordinateY(mFrontHitBox->GetCoordinateY() + aMovement.GetComponentY());
+   }
+
+   //******************************************************************************************************************
+   //
+   // Method: ChangeHeight
+   //
+   // Description:
+   //    Updates the height of the ferret by the passed in height change.
+   //
+   // Arguments:
+   //    aHeightChange - The height change.
+   //
+   // Return:
+   //    N/A
+   //
+   //******************************************************************************************************************
+   void Ferret::ChangeHeight(int aHeightChange)
+   {
+      mHeight += aHeightChange;
+   }
+
+   //******************************************************************************************************************
+   //
+   // Method: GetHeight
+   //
+   // Description:
+   //    Returns the current height of the ferret.
+   //
+   // Arguments:
+   //    N/A
+   //
+   // Return:
+   //    Returns the current height.
+   //
+   //******************************************************************************************************************
+   int Ferret::GetHeight()
+   {
+      return mHeight;
+   }
+
+   //******************************************************************************************************************
+   //
+   // Method: SetVerticalMovement
+   //
+   // Description:
+   //    Updates the vertical movement of the ferret witht he passed in value.
+   //
+   // Arguments:
+   //    aVerticalMovement - The vertical movement to set the ferret to.
+   //
+   // Return:
+   //    N/A
+   //
+   //******************************************************************************************************************
+   void Ferret::SetVerticalMovement(VerticalMovement aVerticalMovement)
+   {
+      mVerticalMovement = aVerticalMovement;
+   }
+   
+   //******************************************************************************************************************
+   //
+   // Method: SetVerticalMovement
+   //
+   // Description:
+   //    Returns the current vertical movement of the ferret.
+   //
+   // Arguments:
+   //    N/A
+   //
+   // Return:
+   //    Returns the current vertical movement.
+   //
+   //******************************************************************************************************************
+   VerticalMovement Ferret::SetVerticalMovement()
+   {
+      return mVerticalMovement;
    }
 
    //******************************************************************************************************************

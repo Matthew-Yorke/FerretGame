@@ -1,18 +1,13 @@
 //*********************************************************************************************************************
 //
-// File: Game.cpp
+// File: GameScene.cpp
 //
 // Description:
-//    Thee main game classes. This class intializes the game settings before launching into the main game loop which
-//    calls to update the current state of the game until the game has completed.
+//    TODO: Add description.
 //
 //*********************************************************************************************************************
 
-#include "Game.h"
-// TODO: Remove when put in appropriate place.
-#include "Objects/Ferret.h"
-#include "BebopCore/Graphics/Light.h"
-#include "GameState/PlayState.h"
+#include "GameScene.h"
 
 namespace FerretGame
 {
@@ -22,10 +17,10 @@ namespace FerretGame
 
    //******************************************************************************************************************
    //
-   // Method: Game
+   // Method: GameScene
    //
    // Description:
-   //    Constructor that sets member variables to default values.
+   //    TODO: Add Description.
    //
    // Arguments:
    //    N/A
@@ -34,23 +29,16 @@ namespace FerretGame
    //    N/A
    //
    //******************************************************************************************************************
-   Game::Game() :
-      mRunning(false), mpCurrentState(nullptr)
+   GameScene::GameScene()
    {
-      mpEngine = new Bebop::Bebop();
-
-      if (InitializeEngine() == true)
-      {
-         RunGameLoop();
-      }
    }
    
    //******************************************************************************************************************
    //
-   // Method: ~ClassName
+   // Method: ~Scene
    //
    // Description:
-   //    Destructor to release any allocated memory from this class.
+   //    TODO: Add description.
    //    
    // Arguments:
    //    N/A
@@ -59,9 +47,71 @@ namespace FerretGame
    //    N/A
    //
    //******************************************************************************************************************
-   Game::~Game()
+   GameScene::~GameScene()
    {
-      delete mpEngine;
+   }
+
+   //******************************************************************************************************************
+   //
+   // Method: AddFloor
+   //
+   // Description:
+   //    TODO: Add description.
+   //
+   // Arguments:
+   //    aLevel  - Indicates the level the floor belongs to.
+   //    apFloor - Pointer to reference a floor object.
+   //
+   // Return:
+   //    N/A
+   //
+   //******************************************************************************************************************
+   void GameScene::AddFloor(unsigned int aLevel, Bebop::Objects::Object* apFloor)
+   {
+      mFloors.push_back(std::make_pair(aLevel, apFloor));
+   }
+
+   //************************************************************************************************************
+   //
+   // Method: AddFerret
+   //
+   // Description:
+   //    TODO: Add description.
+   //
+   // Arguments:
+   //    apFerret  - Pointer to reference a ferret object.
+   //
+   // Return:
+   //    N/A
+   //
+   //************************************************************************************************************
+   void GameScene::AddFerret(Ferret* apFerret)
+   {
+      mFerrets.push_back(apFerret);
+   }
+
+   //************************************************************************************************************
+   //
+   // Method: Update
+   //
+   // Description:
+   //    TODO: Add description.
+   //
+   // Arguments:
+   //    N/A
+   //
+   // Return:
+   //    N/A
+   //
+   //************************************************************************************************************
+   void GameScene::Update()
+   {
+      // TODO: Check and resolve collision.
+
+      for (auto ferretIter = mFerrets.begin(); ferretIter != mFerrets.end(); ++ferretIter)
+      {
+         FerretFloorCollision(*ferretIter);
+      }
    }
 
 //*********************************************************************************************************************
@@ -84,38 +134,10 @@ namespace FerretGame
 
    //******************************************************************************************************************
    //
-   // Method: InitializeEngine
+   // Method: FerretFloorCollision
    //
    // Description:
-   //    Attempt to intialize the Bebop engine.
-   //
-   // Arguments:
-   //    N/A
-   //
-   // Return:
-   //    True  - All initialization of Bebop successful.
-   //    False - A Bebop initialization failed.
-   //
-   //******************************************************************************************************************
-   bool Game::InitializeEngine()
-   {
-      if (mpEngine->InitializeBebop() == true &&
-          mpEngine->InitializeGraphics() == true &&
-          mpEngine->InitializeEvents() == true)
-      {
-         mpEngine->CreateWindow(640, 360);
-         return true;
-      }
-
-      return false;
-   }
-
-   //******************************************************************************************************************
-   //
-   // Method: RunGameLoop
-   //
-   // Description:
-   //    Run the main game loop for the game.
+   //    TODO: Add description.
    //
    // Arguments:
    //    N/A
@@ -124,24 +146,9 @@ namespace FerretGame
    //    N/A
    //
    //******************************************************************************************************************
-   void Game::RunGameLoop()
+   void GameScene::FerretFloorCollision(Ferret* apFerret)
    {
-      bool timedOut = false;
-
-      
-      if (InitializeEngine() == true)
-      {
-         mRunning = true;
-   
-         // TODO: Remove when appropriate placement in another class.
-         mpEngine->CreateScene();
-         mpEngine->GetScene()->AddNewLayer(0);
-         mpCurrentState = new PlayState(mpEngine);
-      }
-      while (mRunning == true)
-      {
-          mpCurrentState->Update();
-      }
+      // TODO: Check ferret collision cagainst floors of the same level.
    }
 
 //*********************************************************************************************************************

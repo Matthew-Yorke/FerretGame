@@ -11,6 +11,7 @@
 #ifndef Ferret_H
 #define Ferret_H
 
+#include "FerretConstants.h"
 #include "BebopCore/Graphics/AnimatedSprite.h"
 #include "BebopCore/Math/Vector2D.h"
 #include "BebopCore/Objects/CircleObject.h"
@@ -88,6 +89,70 @@ namespace FerretGame
          //
          //************************************************************************************************************
          void Move(Bebop::Math::Vector2D<float> aMovement);
+
+         //************************************************************************************************************
+         //
+         // Method: ChangeHeight
+         //
+         // Description:
+         //    Updates the height of the ferret by the passed in height change.
+         //
+         // Arguments:
+         //    aHeightChange - The height change.
+         //
+         // Return:
+         //    N/A
+         //
+         //************************************************************************************************************
+         void ChangeHeight(int aHeightChange);
+
+         //************************************************************************************************************
+         //
+         // Method: GetHeight
+         //
+         // Description:
+         //    Returns the current height of the ferret.
+         //
+         // Arguments:
+         //    N/A
+         //
+         // Return:
+         //    Returns the current height.
+         //
+         //************************************************************************************************************
+         int GetHeight();
+
+         //************************************************************************************************************
+         //
+         // Method: SetVerticalMovement
+         //
+         // Description:
+         //    Updates the vertical movement of the ferret witht he passed in value.
+         //
+         // Arguments:
+         //    aVerticalMovement - The vertical movement to set the ferret to.
+         //
+         // Return:
+         //    N/A
+         //
+         //************************************************************************************************************
+         void SetVerticalMovement(VerticalMovement aVerticalMovement);
+
+         //************************************************************************************************************
+         //
+         // Method: SetVerticalMovement
+         //
+         // Description:
+         //    Returns the current vertical movement of the ferret.
+         //
+         // Arguments:
+         //    N/A
+         //
+         // Return:
+         //    Returns the current vertical movement.
+         //
+         //************************************************************************************************************
+         VerticalMovement SetVerticalMovement();
 
          //************************************************************************************************************
          //
@@ -204,9 +269,16 @@ namespace FerretGame
          // The animated sprite for the ferret to be drawn.
          Bebop::Graphics::AnimatedSprite* mSprite;
 
+         // The hitbox(circles) for the ferret to check for collisions.
          Bebop::Objects::CircleObject* mBackHitBox;
          Bebop::Objects::CircleObject* mMiddleHitBox;
          Bebop::Objects::CircleObject* mFrontHitBox;
+
+         // The height the ferret is currently at.
+         int mHeight;
+
+         // Tracks the current vertical movement of the ferret.
+         VerticalMovement mVerticalMovement;
 
       //***************************************************************************************************************
       // Member Variables - End

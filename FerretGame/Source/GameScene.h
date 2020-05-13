@@ -1,23 +1,22 @@
 //*********************************************************************************************************************
 //
-// File: PlayState.h
+// File: GameScene.h
 //
 // Description:
 //    TODO: Add description.
 //
 //*********************************************************************************************************************
 
-#ifndef PlayState_H
-#define PlayState_H
+#ifndef GameScene_H
+#define GameScene_H
 
-#include "GameState.h"
-#include "../GameScene.h"
-// TODO: Remove when moved to appropriate clas.
-#include "../Objects/Ferret.h"
+#include <vector>
+#include "Objects/Ferret.h"
+#include "BebopCore/Objects/Object.h"
 
 namespace FerretGame
 {
-   class PlayState : public GameState
+   class GameScene
    {
       //***************************************************************************************************************
       // Methods - Start
@@ -27,27 +26,26 @@ namespace FerretGame
 
          //************************************************************************************************************
          //
-         // Method: PlayState
+         // Method: GameScene
          //
          // Description:
-         //    Constructor that sets member variables to default states.
+         //    TODO: Add description.
          //
          // Arguments:
-         //    apEngine - Pointer to refrence the game engine for the game.
+         //    N/A
          //
          // Return:
          //    N/A
          //
          //************************************************************************************************************
-         PlayState(Bebop::Bebop* apEngine);
+         GameScene();
 
          //************************************************************************************************************
          //
-         // Method: ~PlayState
+         // Method: ~GameScene
          //
          // Description:
-         //    Destructor the cleans up any used memory this class handles upon the destruction of an object of this
-         //    class.
+         //    TODO: Add description.
          //
          // Arguments:
          //    N/A
@@ -56,16 +54,47 @@ namespace FerretGame
          //    N/A
          //
          //************************************************************************************************************
-         ~PlayState();
+         ~GameScene();
+
+         //************************************************************************************************************
+         //
+         // Method: AddFloor
+         //
+         // Description:
+         //    TODO: Add description.
+         //
+         // Arguments:
+         //    aLevel  - Indicates the level the floor belongs to.
+         //    apFloor - Pointer to reference a floor object.
+         //
+         // Return:
+         //    N/A
+         //
+         //************************************************************************************************************
+         void AddFloor(unsigned int aLevel, Bebop::Objects::Object* apFloor);
+
+         //************************************************************************************************************
+         //
+         // Method: AddFerret
+         //
+         // Description:
+         //    TODO: Add description.
+         //
+         // Arguments:
+         //    apFerret  - Pointer to reference a ferret object.
+         //
+         // Return:
+         //    N/A
+         //
+         //************************************************************************************************************
+         void AddFerret(Ferret* apFerret);
 
          //************************************************************************************************************
          //
          // Method: Update
          //
          // Description:
-         //    Overrides the parent class of this method to implement the functionality for this required method. This
-         //    method updates the game engine and updates objects in the game based on the input checks for keys being
-         //    pressed/released.
+         //    TODO: Add description.
          //
          // Arguments:
          //    N/A
@@ -74,7 +103,7 @@ namespace FerretGame
          //    N/A
          //
          //************************************************************************************************************
-         void Update() override;
+         void Update();
 
       protected:
 
@@ -82,8 +111,21 @@ namespace FerretGame
 
       private:
 
-         // TODO: Remove later, this is only for testing purposes.
-         void SetupTestGame();
+         //************************************************************************************************************
+         //
+         // Method: FerretFloorCollision
+         //
+         // Description:
+         //    TODO: Add description.
+         //
+         // Arguments:
+         //    N/A
+         //
+         // Return:
+         //    N/A
+         //
+         //************************************************************************************************************
+         void FerretFloorCollision(Ferret* apFerret);
 
       //***************************************************************************************************************
       // Methods - End
@@ -103,15 +145,11 @@ namespace FerretGame
 
       private:
 
-         // Pointer to a reference of the game engine.
-         Bebop::Bebop* mpEngine;
+         // Tracks all the floor objects of the scene. The first of the pair indicates the level a floor is on.
+         std::vector<std::pair<unsigned int, Bebop::Objects::Object*>> mFloors;
 
-         // Tracks the current scene of the game.
-         GameScene* mpCurrentScene;
-
-         // TODO: Remvoe when put in appropriate class.
-         Ferret* mpCharacter;
-         float mSprint;
+         // Tracks all the ferret objects of the scene.
+         std::vector<Ferret*> mFerrets;
 
       //***************************************************************************************************************
       // Member Variables - End
@@ -119,4 +157,4 @@ namespace FerretGame
    };
 }
 
-#endif // PlayState_H
+#endif // GameScene_H
