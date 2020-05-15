@@ -2,7 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\FerretGame",
-    "\\FerretGame\\Source"
+    "\\FerretGame\\Source",
+    "\\FerretGame\\Source\\GameState",
+    "\\FerretGame\\Source\\PlayerStates"
   ],
+  "SelectedNode": "\\FerretGame\\Source\\PlayerStates\\RegularState.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -19,6 +19,9 @@
     <Filter Include="Source Files\GameState">
       <UniqueIdentifier>{0077791b-3991-4eb0-9b7a-8abd9f92dfc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PlayerState">
+      <UniqueIdentifier>{26d8ee8c-a26c-40e5-9a6d-03a1b6a7e902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -39,6 +42,9 @@
     <ClCompile Include="Source\GameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerStates\RegularState.cpp">
+      <Filter>Source Files\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game.h">
@@ -58,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="Source\GameScene.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerStates\PlayerState.h">
+      <Filter>Source Files\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerStates\RegularState.h">
+      <Filter>Source Files\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

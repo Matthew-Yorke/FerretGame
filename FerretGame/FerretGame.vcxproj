@@ -195,6 +195,7 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Objects\Ferret.cpp" />
     <ClCompile Include="Source\GameScene.cpp" />
+    <ClCompile Include="Source\PlayerStates\RegularState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game.h" />
@@ -203,6 +204,8 @@
     <ClInclude Include="Source\Objects\Ferret.h" />
     <ClInclude Include="Source\Objects\FerretConstants.h" />
     <ClInclude Include="Source\GameScene.h" />
+    <ClInclude Include="Source\PlayerStates\PlayerState.h" />
+    <ClInclude Include="Source\PlayerStates\RegularState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
