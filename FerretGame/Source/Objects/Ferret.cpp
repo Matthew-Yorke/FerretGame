@@ -172,7 +172,7 @@ namespace FerretGame
    
    //******************************************************************************************************************
    //
-   // Method: SetVerticalMovement
+   // Method: GetVerticalMovement
    //
    // Description:
    //    Returns the current vertical movement of the ferret.
@@ -184,7 +184,7 @@ namespace FerretGame
    //    Returns the current vertical movement.
    //
    //******************************************************************************************************************
-   VerticalMovement Ferret::SetVerticalMovement()
+   VerticalMovement Ferret::GetVerticalMovement()
    {
       return mVerticalMovement;
    }

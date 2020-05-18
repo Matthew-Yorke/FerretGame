@@ -12,9 +12,8 @@
 
 #include "GameState.h"
 #include "../GameScene.h"
-#include "../PlayerStates/PlayerState.h"
 // TODO: Remove when moved to appropriate clas.
-#include "../Objects/Ferret.h"
+#include "../Player/Player.h"
 
 namespace FerretGame
 {
@@ -110,11 +109,8 @@ namespace FerretGame
          // Tracks the current scene of the game.
          GameScene* mpCurrentScene;
 
-         // Tracks the current state of the player.
-         PlayerState* mpPlayerState;
-
          // TODO: Remvoe when put in appropriate class.
-         Ferret* mpCharacter;
+         Player* mpCharacter;
          float mSprint;
 
       //***************************************************************************************************************

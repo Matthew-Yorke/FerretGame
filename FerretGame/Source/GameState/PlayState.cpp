@@ -8,7 +8,6 @@
 //*********************************************************************************************************************
 
 #include "PlayState.h"
-#include "../PlayerStates/RegularState.h"
 
 namespace FerretGame
 {
@@ -31,14 +30,14 @@ namespace FerretGame
    //
    //******************************************************************************************************************
    PlayState::PlayState(Bebop::Bebop* apEngine) :
-      mpEngine(apEngine), mSprint(1.0F), mpCurrentScene(nullptr), mpPlayerState(nullptr)
+      mpEngine(apEngine), mSprint(1.0F), mpCurrentScene(nullptr)
    {
-      mpCharacter = new Ferret(Bebop::Math::Vector2D<float>(0.0F, 0.0F));
+      mpCharacter = new Player(mpEngine);
       // TODO: Remove when moved to appropriate class.
-      mpEngine->GetScene()->GetLayer(0)->AddAnimatedSprite(mpCharacter->GetSprite());
-      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetBackHitbox(), nullptr, 10.0F));
-      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetMiddleHitbox(), nullptr, 10.0F));
-      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetFrontHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddAnimatedSprite(mpCharacter->GetFerret()->GetSprite());
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetFerret()->GetBackHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetFerret()->GetMiddleHitbox(), nullptr, 10.0F));
+      mpEngine->GetScene()->GetLayer(0)->AddParticle(new Bebop::Graphics::Particle(mpCharacter->GetFerret()->GetFrontHitbox(), nullptr, 10.0F));
       SetupTestGame();
    }
    
@@ -81,7 +80,7 @@ namespace FerretGame
    {
       if (mpEngine->Update() == true)
       {
-         mpPlayerState->Update();
+         mpCharacter->Update();
       }
    }
 
@@ -108,8 +107,7 @@ namespace FerretGame
    {
       mpCurrentScene = new GameScene();
       mpCurrentScene->AddFloor(0, new Bebop::Objects::RectangleObject(Bebop::Math::Vector2D<float>(0.0F,0.0F), 0, 0, nullptr));
-      mpCurrentScene->AddFerret(mpCharacter);
-      mpPlayerState = new RegularState(mpCharacter, mpEngine);
+      mpCurrentScene->AddFerret(mpCharacter->GetFerret());
    }
 
 //*********************************************************************************************************************
