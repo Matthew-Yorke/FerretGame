@@ -54,6 +54,9 @@
     <ClCompile Include="Source\Player\PlayerStates\RegularState.cpp">
       <Filter>Source Files\Player\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Objects\Object.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Source\Player\PlayerStates\RegularState.h">
       <Filter>Source Files\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objects\Object.h">
+      <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

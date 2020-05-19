@@ -38,12 +38,17 @@ namespace FerretGame
       mSprite = new Bebop::Graphics::AnimatedSprite("../Images/TestFerret.png",
                                                     Bebop::Math::Vector2D<int>(IDLE_FRAME_ROW, FIRST_ANIMATION_FRAME),
                                                     SPRITE_SIZE, SPRITE_SIZE, mLocation, ANIMATION_FPS, IDLE_FRAME_COUNT, mRotation);
-      mBackHitBox = new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF + HITBOX_OFFSET),
-                                                     HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160));
-      mMiddleHitBox = new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF),
-                                                       HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160));
-      mFrontHitBox = new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF - HITBOX_OFFSET),
-                                                      HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160));
+
+      // Add hitboxes
+      AddCircleHitbox(CircleHitboxes::BACK,
+                      new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF + HITBOX_OFFSET),
+                                                       HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160)));
+      AddCircleHitbox(CircleHitboxes::MIDDLE,
+                      new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF),
+                                                       HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160)));
+      AddCircleHitbox(CircleHitboxes::FRONT,
+                      new Bebop::Objects::CircleObject(Bebop::Math::Vector2D<float>(SPRITE_SIZE / HALF, SPRITE_SIZE / HALF - HITBOX_OFFSET),
+                                                       HITBOX_RADIUS, new Bebop::Graphics::Color(0,0,255,160)));
    }
    
    //******************************************************************************************************************
@@ -63,9 +68,6 @@ namespace FerretGame
    Ferret::~Ferret()
    {
       delete mSprite;
-      delete mBackHitBox;
-      delete mMiddleHitBox;
-      delete mFrontHitBox;
    }
 
    //******************************************************************************************************************
@@ -105,12 +107,18 @@ namespace FerretGame
    {
       mLocation += aMovement;
       mSprite->UpdatePosition(mLocation);
-      mBackHitBox->SetCoordinateX(mBackHitBox->GetCoordinateX() + aMovement.GetComponentX());
-      mBackHitBox->SetCoordinateY(mBackHitBox->GetCoordinateY() + aMovement.GetComponentY());
-      mMiddleHitBox->SetCoordinateX(mMiddleHitBox->GetCoordinateX() + aMovement.GetComponentX());
-      mMiddleHitBox->SetCoordinateY(mMiddleHitBox->GetCoordinateY() + aMovement.GetComponentY());
-      mFrontHitBox->SetCoordinateX(mFrontHitBox->GetCoordinateX() + aMovement.GetComponentX());
-      mFrontHitBox->SetCoordinateY(mFrontHitBox->GetCoordinateY() + aMovement.GetComponentY());
+
+      Bebop::Objects::CircleObject* pCurrentHitbox = GetCircleHitbox(CircleHitboxes::BACK);
+      pCurrentHitbox->SetCoordinateX(pCurrentHitbox->GetCoordinateX() + aMovement.GetComponentX());
+      pCurrentHitbox->SetCoordinateY(pCurrentHitbox->GetCoordinateY() + aMovement.GetComponentY());
+
+      pCurrentHitbox = GetCircleHitbox(CircleHitboxes::MIDDLE);
+      pCurrentHitbox->SetCoordinateX(pCurrentHitbox->GetCoordinateX() + aMovement.GetComponentX());
+      pCurrentHitbox->SetCoordinateY(pCurrentHitbox->GetCoordinateY() + aMovement.GetComponentY());
+
+      pCurrentHitbox = GetCircleHitbox(CircleHitboxes::FRONT);
+      pCurrentHitbox->SetCoordinateX(pCurrentHitbox->GetCoordinateX() + aMovement.GetComponentX());
+      pCurrentHitbox->SetCoordinateY(pCurrentHitbox->GetCoordinateY() + aMovement.GetComponentY());
    }
 
    //******************************************************************************************************************
@@ -213,19 +221,22 @@ namespace FerretGame
       }
 
       mSprite->UpdateRotation(mRotation * Bebop::Math::RADIANS_CONVERSION);
+
+      Bebop::Objects::CircleObject* pCurrentHitbox = GetCircleHitbox(CircleHitboxes::BACK);
       float BackHitboxX = (mLocation.GetComponentX() + (SPRITE_SIZE / HALF)) + HITBOX_OFFSET *
                           cos((HITBOX_ROTATOIN_OFFSET + mRotation) * Bebop::Math::RADIANS_CONVERSION);
       float BackHitboxY = (mLocation.GetComponentY() + (SPRITE_SIZE / HALF)) + HITBOX_OFFSET *
                           sin((HITBOX_ROTATOIN_OFFSET + mRotation) * Bebop::Math::RADIANS_CONVERSION);
-      mBackHitBox->SetCoordinateX(BackHitboxX);
-      mBackHitBox->SetCoordinateY(BackHitboxY);
+      pCurrentHitbox->SetCoordinateX(BackHitboxX);
+      pCurrentHitbox->SetCoordinateY(BackHitboxY);
 
+      pCurrentHitbox = GetCircleHitbox(CircleHitboxes::FRONT);
       float FrontHitboxX = (mLocation.GetComponentX() + (SPRITE_SIZE / HALF)) + HITBOX_OFFSET *
                            cos((-HITBOX_ROTATOIN_OFFSET + mRotation) * Bebop::Math::RADIANS_CONVERSION);
       float FrontHitboxY = (mLocation.GetComponentY() + (SPRITE_SIZE / HALF)) + HITBOX_OFFSET *
                            sin((-HITBOX_ROTATOIN_OFFSET + mRotation) * Bebop::Math::RADIANS_CONVERSION);
-      mFrontHitBox->SetCoordinateX(FrontHitboxX);
-      mFrontHitBox->SetCoordinateY(FrontHitboxY);
+      pCurrentHitbox->SetCoordinateX(FrontHitboxX);
+      pCurrentHitbox->SetCoordinateY(FrontHitboxY);
    }
 
    //******************************************************************************************************************
@@ -263,7 +274,7 @@ namespace FerretGame
    //******************************************************************************************************************
    Bebop::Objects::CircleObject* Ferret::GetBackHitbox()
    {
-      return mBackHitBox;
+      return GetCircleHitbox(CircleHitboxes::BACK);
    }
 
    //******************************************************************************************************************
@@ -282,7 +293,7 @@ namespace FerretGame
    //******************************************************************************************************************
    Bebop::Objects::CircleObject* Ferret::GetMiddleHitbox()
    {
-      return mMiddleHitBox;
+      return GetCircleHitbox(CircleHitboxes::MIDDLE);
    }
 
    //******************************************************************************************************************
@@ -301,7 +312,7 @@ namespace FerretGame
    //******************************************************************************************************************
    Bebop::Objects::CircleObject* Ferret::GetFrontHitbox()
    {
-      return mFrontHitBox;
+      return GetCircleHitbox(CircleHitboxes::FRONT);
    }
 
 //*********************************************************************************************************************

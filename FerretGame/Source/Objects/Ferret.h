@@ -11,6 +11,7 @@
 #ifndef Ferret_H
 #define Ferret_H
 
+#include "Object.h"
 #include "FerretConstants.h"
 #include "BebopCore/Graphics/AnimatedSprite.h"
 #include "BebopCore/Math/Vector2D.h"
@@ -18,7 +19,7 @@
 
 namespace FerretGame
 {
-   class Ferret
+   class Ferret : public Object
    {
       //***************************************************************************************************************
       // Methods - Start
@@ -268,11 +269,6 @@ namespace FerretGame
 
          // The animated sprite for the ferret to be drawn.
          Bebop::Graphics::AnimatedSprite* mSprite;
-
-         // The hitbox(circles) for the ferret to check for collisions.
-         Bebop::Objects::CircleObject* mBackHitBox;
-         Bebop::Objects::CircleObject* mMiddleHitBox;
-         Bebop::Objects::CircleObject* mFrontHitBox;
 
          // The height the ferret is currently at.
          int mHeight;

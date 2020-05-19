@@ -41,6 +41,9 @@ namespace FerretGame
    // The number of frames in the idle animation.
    const int IDLE_FRAME_COUNT = 1;
 
+   // The set of circular hitboxes.
+   enum CircleHitboxes {FRONT, MIDDLE, BACK};
+
    // The set of vertical movement of the ferret.
    enum VerticalMovement {RISING, DESCENDING, NONE};
 }

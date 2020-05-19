@@ -4,9 +4,10 @@
     "\\FerretGame",
     "\\FerretGame\\Source",
     "\\FerretGame\\Source\\GameState",
+    "\\FerretGame\\Source\\Objects",
     "\\FerretGame\\Source\\Player",
     "\\FerretGame\\Source\\Player\\PlayerStates"
   ],
-  "SelectedNode": "\\FerretGame\\Source\\Game.cpp",
+  "SelectedNode": "\\FerretGame\\Source\\GameState\\GameState.h",
   "PreviewInSolutionExplorer": false
 }
